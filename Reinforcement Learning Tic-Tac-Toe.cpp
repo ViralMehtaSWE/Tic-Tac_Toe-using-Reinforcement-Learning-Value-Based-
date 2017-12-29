@@ -341,6 +341,7 @@ void play_game()
 		cin>>pos;
 		if(pos==-1)
 		{
+			// For Debugging ///////////////////////////////////////////////////////////////
 			while(1)
 			{
 				cout << "Enter Query State, Action: ";
@@ -349,6 +350,7 @@ void play_game()
 				cin>>s>>a;
 				cout << "Q_table[" << s << "][" << a << "] = " << Q_table[s][a] << "\n";
 			}
+			////////////////////////////////////////////////////////////////////////////////
 		}
 		state=modify_board(state,pos);
 		board = get_board_list(state);
