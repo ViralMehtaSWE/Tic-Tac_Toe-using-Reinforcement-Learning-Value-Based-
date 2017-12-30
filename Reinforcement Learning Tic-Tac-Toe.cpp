@@ -294,11 +294,6 @@ void train(ll num_iters)
 			pair<ll,ll> best_action_from_next_state = carry_out_worst_action(next_state);
 			ll best_action = best_action_from_next_state.first;
 			Q_table[state][current_action] = Q_table[state][current_action] + ALPHA*(reward + GAMMA*Q_table[next_state][best_action] - Q_table[state][current_action]);
-			/*if(state==866&&current_action==1) 
-			{
-				db(num_iters, state, current_action, reward, next_state, best_action, Q_table[next_state][best_action], Q_table[state][current_action]);
-				cout.flush();
-			}*/
 			if(best_action != 9) state = next_state;
 			else state = 0;
 		}
@@ -311,13 +306,11 @@ void train(ll num_iters)
 			ll reward = get_reward(next_state);
 			pair<ll,ll> best_action_from_next_state = carry_out_best_action(next_state);
 			ll best_action = best_action_from_next_state.first;
-			//db(num_iters, state, current_action, reward, next_state, best_action);
 			Q_table[state][current_action] = Q_table[state][current_action] + ALPHA*(reward + GAMMA*Q_table[next_state][best_action] - Q_table[state][current_action]);
 			if(best_action != 9) state = next_state;
 			else state = 0;
 		}
 	}
-	//find_mx_mn();
 }
 void play_game()
 {
@@ -327,7 +320,6 @@ void play_game()
 	while(1)
 	{
 		pair<ll,ll> next_info = carry_out_best_action(state, true);
-		//db(state,next_info.first, next_info.second);
 		state = next_info.second;
 		print_board(state);
 		board = get_board_list(state);
