@@ -317,13 +317,14 @@ void train(ll num_iters)
 			else state = 0;
 		}
 	}
-	find_mx_mn();
+	//find_mx_mn();
 }
 void play_game()
 {
-	ll pos, t=4, state=0;
+	cout << "\n>>>>> New Game Starts Here! <<<<<\n\n";
+	ll pos, state=0;
 	vector<ll> board;
-	while(t--)
+	while(1)
 	{
 		pair<ll,ll> next_info = carry_out_best_action(state, true);
 		//db(state,next_info.first, next_info.second);
@@ -336,11 +337,16 @@ void play_game()
 			cout.flush();
 			return;
 		}
+		else if(is_draw(board))
+		{
+			cout << "Its a Draw!\n";
+			cout.flush();
+			return;
+		}
 		cout << "Enter your move: ";
 		cout.flush();
 		cin>>pos;
-		
-		// For Debugging ///////////////////////////////////////////////////////////////
+		/////// FOR DEBUGGING ONLY ///////
 		if(pos==-1)
 		{
 			while(1)
@@ -352,8 +358,7 @@ void play_game()
 				cout << "Q_table[" << s << "][" << a << "] = " << Q_table[s][a] << "\n";
 			}
 		}
-		////////////////////////////////////////////////////////////////////////////////
-		
+		/////// FOR DEBUGGING ONLY ///////
 		state=modify_board(state,pos);
 		board = get_board_list(state);
 		if(is_winner(board, 1))
@@ -364,8 +369,6 @@ void play_game()
 			return;
 		}
 	}
-	cout << "Its a Draw!\n";
-	cout.flush();
 }
 int main()
 {
